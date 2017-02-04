@@ -126,6 +126,6 @@ class Books extends \yii\db\ActiveRecord
 	*/
     public static function getYearsList()
     {
-        return array_combine (range(date(Y), date(Y) - 200), range(date(Y), date(Y) - 200));
+        return array_combine(range(date(Y), date(Y) - 200), range(date(Y), date(Y) - 200));
     }
 }

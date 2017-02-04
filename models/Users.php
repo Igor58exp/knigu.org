@@ -39,7 +39,7 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['password', 'email'], 'required'],
+            [['password', 'email', 'country_id', 'region_id'], 'required'],
             [['country_id', 'region_id', 'emailVerified', 'is_blocked'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['name', 'surname', 'password', 'email'], 'string', 'max' => 255],

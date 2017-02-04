@@ -22,9 +22,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'author') ?>
 
-	<?= $form->field($model, 'year')->dropDownList($model::getYearsList()) ?>
+	<?= $form->field($model, 'year')->dropDownList($model::getYearsList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select year') . ' -- ']) ?>
 	
-	<?= $form->field($model, 'user_id')->dropDownList($model::getUsersList()) ?>
+	<?= $form->field($model, 'user_id')->dropDownList($model::getUsersList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select user') . ' -- ']) ?>
 	
 	<?= $form->field($model, 'hash') ?>
 

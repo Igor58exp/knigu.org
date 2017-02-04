@@ -18,11 +18,11 @@ use app\models\Regions;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'country_id')->dropDownList(Countries::getList()) ?>
+    <?= $form->field($model, 'country_id')->dropDownList(Countries::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select country') . ' -- ']) ?>
 		
-	<?= $form->field($model, 'region_id')->dropDownList(Regions::getList()) ?>
+	<?= $form->field($model, 'region_id')->dropDownList(Regions::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select region') . ' -- ']) ?>
 
-    <?= $form->field($model, 'is_pickup')->dropDownList($model::getPickupStatusesList())  ?>
+    <?= $form->field($model, 'is_pickup')->dropDownList($model::getPickupStatusesList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select status') . ' -- '])  ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>

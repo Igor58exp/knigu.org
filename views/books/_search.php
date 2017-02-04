@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'author') ?>
 
-	<?= $form->field($model, 'year')->dropDownList($model::getYearsList()) ?>
+	<?= $form->field($model, 'year')->dropDownList($model::getYearsList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select year') . ' -- ']) ?>
 	
 	<?= $form->field($model, 'hash') ?>
 
@@ -31,7 +31,6 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-		<?= Html::a(Yii::t('app', 'Create Books'), ['create'], ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

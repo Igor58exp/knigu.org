@@ -40,9 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				<?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-				<?= $form->field($model, 'country_id')->dropDownList(Countries::getList()) ?>
+				<?= $form->field($model, 'country_id')->dropDownList(Countries::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select country') . ' -- ']) ?>
 				
-				<?= $form->field($model, 'region_id')->dropDownList(Regions::getList()) ?>
+				<?= $form->field($model, 'region_id')->dropDownList(Regions::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select region') . ' -- ']) ?>
 
 				<div class="form-group">
 					<?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>

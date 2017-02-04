@@ -26,9 +26,9 @@ use app\models\Regions;
 
     <?php // echo $form->field($model, 'password') ?>
 
-	<?= $form->field($model, 'country_id')->dropDownList(Countries::getList()) ?>
+	<?= $form->field($model, 'country_id')->dropDownList(Countries::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select country') . ' -- ']) ?>
 	
-	<?= $form->field($model, 'region_id')->dropDownList(Regions::getList()) ?>
+	<?= $form->field($model, 'region_id')->dropDownList(Regions::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select region') . ' -- ']) ?>
 
     <?= $form->field($model, 'email') ?>
 	

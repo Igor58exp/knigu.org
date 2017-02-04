@@ -40,13 +40,19 @@ return [
     'Recipients' => 'Получатели',
     'Recipient' => 'Получатель',
     'Add recipient' => 'Добавить получателя',
+    'Create recipient' => 'Добавить получателя',
+    'Create Recipients' => 'Добавить получателя',
+    'Select status' => 'Выберите статус',
+	
     'Next' => 'Следующий',
     'Previouse' => 'Предидущий',
     'Bookworld' => 'Книгомир',
     'Download' => 'Скачать',
     'Books statistics' => 'Статистика книг',
-    'Country' => 'Страна',
+	'Country' => 'Страна',
+    'Select country' => 'Выберите страну',
     'Region' => 'Регион',
+    'Select region' => 'Выберите регион',
     'Number of books' => 'Количество книг',
     'more_info_btn' => 'Узнать больше',
     'Our mission' => 'Наша миссия',
@@ -74,7 +80,6 @@ return [
     'Year' => 'Год',
     'Code' => 'Код',
     
-    
     'field' => 'поле',
     'fill form' => 'заполнить форму',
     'Pick up' => 'Наличие курьера',
@@ -101,10 +106,19 @@ return [
 	
     'Books' => 'Книги',
     'Create Books' => 'Добавить книгу',
+    'Create book' => 'Добавить книгу',
+	'Select year' => 'Выберите год',
 	
     'text_info' => 'Зарегистрируйтесь чтобы воспользоваться сайтом. Это бесплатно',
     'Users' => 'Пользователи',
     'Create Users' => 'Добавить пользователя',
+    'Create user' => 'Добавить пользователя',
+    'Select user' => 'Выберите пользователя',
+    'Email Verified' => 'Подтверждённый?',
+    'Verification Token' => 'Токен',
+    'Blocked' => 'Заблокирован?',
+    'Yes' => 'Да',
+    'No' => 'Нет',
 	
 	
     'My Account' => 'Личный кабинет',

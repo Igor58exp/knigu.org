@@ -17,9 +17,9 @@ use app\modules\cpanel\models\Regions;
 
     <?= $form->field($model, 'name')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'country_id')->dropDownList(Countries::getList()) ?>
+    <?= $form->field($model, 'country_id')->dropDownList(Countries::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select country') . ' -- ']) ?>
 	
-	<?= $form->field($model, 'region_id')->dropDownList(Regions::getList()) ?>
+	<?= $form->field($model, 'region_id')->dropDownList(Regions::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select region') . ' -- ']) ?>
 
     <?= $form->field($model, 'address')->textarea(['rows' => 6]) ?>
 

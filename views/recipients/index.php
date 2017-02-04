@@ -17,10 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="recipients-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        </br>
+        <?php // echo Html::a(Yii::t('app', 'Create recipient'), ['create'], ['class' => 'btn btn-success']) ?></br>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
