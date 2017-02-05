@@ -6,6 +6,7 @@ use Yii;
 
 use yii\data\ActiveDataProvider;
 use yii\data\SqlDataProvider;
+use yii\data\ArrayDataProvider;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -199,6 +200,136 @@ class SiteController extends Controller
                 'pageSize' => 10,
             ],
         ]);
+		
+		$data = [
+			[
+				'title' => 'Исповедь',
+				'author' => 'Августин (Блаженный) Аврелий',
+				'link' => 'avreliy.doc',
+			],[
+				'title' => 'Новый Завет',
+				'author' => 'Автор неизвестен',
+				'link' => 'bible.doc',
+			], [
+				'title' => 'Божественная комедия',
+				'author' => 'Алигьери Данте',
+				'link' => 'dante.doc',
+			], [
+				'title' => 'Чёрные маски',
+				'author' => 'Андреев Леонид',
+				'link' => 'andreev.doc',
+			], [
+				'title' => 'Отец Горио',
+				'author' => 'Бальзак Оноре',
+				'link' => 'balzak .doc',
+			], [
+				'title' => 'Сборник стихов',
+				'author' => 'Блок Александр',
+				'link' => 'blok.doc',
+			], [
+				'title' => 'Мертвые души',
+				'author' => 'Гоголь Николай',
+				'link' => 'gogol.doc',
+			], [
+				'title' => 'Илиада.Одиссея',
+				'author' => 'Гомер',
+				'link' => 'gomer.doc',
+			], [
+				'title' => 'Оды',
+				'author' => 'Гораций Квинт',
+				'link' => 'kvint.doc',
+			], [
+				'title' => 'Мамаша Кемских',
+				'author' => 'Горький Максим',
+				'link' => 'gorkij.doc',
+			], [
+				'title' => 'Жизнь и удивительные приключения Робинзона Крузо ',
+				'author' => 'Дефо Даниэль',
+				'link' => 'defo.doc',
+			], [
+				'title' => 'Бесы',
+				'author' => 'Достоевский Федор',
+				'link' => 'dostoevsky.doc',
+			], [
+				'title' => 'Добыча',
+				'author' => 'Золя Эмиль',
+				'link' => 'zoya.doc',
+			], [
+				'title' => 'Карьера Ругонов',
+				'author' => 'Золя Эмиль',
+				'link' => 'zoya2.doc',
+			], [
+				'title' => 'Стихотворения',
+				'author' => 'Киплинг Редьярд',
+				'link' => ' kipling.doc',
+			], [
+				'title' => 'Звезда Соломона',
+				'author' => 'Куприн Александр',
+				'link' => 'kuprin.doc',
+			], [
+				'title' => 'Герой нашего времени',
+				'author' => 'Лермонтов Михаил',
+				'link' => 'lermontov.doc',
+			], [
+				'title' => 'Тартюф',
+				'author' => 'Мольер Жан-Батист',
+				'link' => 'batist.doc',
+			], [
+				'title' => 'Тартюф-1',
+				'author' => 'Мольер Жан-Батист',
+				'link' => 'batist1.doc',
+			], [
+				'title' => 'Русские женщины',
+				'author' => 'Некрасов Николай',
+				'link' => 'nekrasov.doc',
+			], [
+				'title' => 'Метаморфозы',
+				'author' => 'Публий Овидий',
+				'link' => 'ovidij.doc',
+			], [
+				'title' => 'Евгений Онегин',
+				'author' => 'Пушкин Александр',
+				'link' => 'pushkin.doc',
+			], [
+				'title' => 'Том 8. Помпадуры и помпадурши. История одного города',
+				'author' => 'Салтыков-Щедрин Михаил',
+				'link' => ' soltikov.doc',
+			], [
+				'title' => 'Путешествия Лемюэля Гулливера',
+				'author' => 'Свифт Джонатан',
+				'link' => 'svift.doc',
+			], [
+				'title' => 'Приключение Гекльберри Финна',
+				'author' => 'Твен Марк',
+				'link' => 'tven.doc',
+			],  [
+				'title' => 'Отцы и дети',
+				'author' => 'Тургенев Иван',
+				'link' => 'turgen.doc',
+			], [
+				'title' => 'Том 7. Отцы и дети. Дым. Повести и рассказы 1861-1867',
+				'author' => 'Тургенев Иван',
+				'link' => 'turgen2.doc',
+			], [
+				'title' => 'Палата',
+				'author' => 'Чехов Антон',
+				'link' => 'cheh.doc',
+			], [
+				'title' => 'Гамлет 2',
+				'author' => 'Шекспир Уильям',
+				'link' => 'shekspir.doc',
+			]
+		];
+		
+		$dataProvider = new ArrayDataProvider([
+			'allModels' => $data,
+			'pagination' => [
+				'pageSize' => 9999,
+			],
+			'sort' => [
+				'attributes' => ['title', 'author'],
+			],
+		]);
 		
 		return $this->render('downloads', ['listDataProvider' => $dataProvider]);
     }

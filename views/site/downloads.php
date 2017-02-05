@@ -10,7 +10,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-downloads">
     <h1><?= Html::encode($this->title) ?></h1>
-	
+	<p>
+		</br>
+	<p>
 	<?php
 		echo ListView::widget([
 			'dataProvider' => $listDataProvider,
