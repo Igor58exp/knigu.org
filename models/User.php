@@ -2,38 +2,112 @@
 
 namespace app\models;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+use Yii;
+
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
+
+/**
+ * This is the model class for table "users".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $surname
+ * @property string $password
+ * @property integer $country_id
+ * @property string $email
+ * @property integer $emailVerified
+ * @property string $verificationToken
+ * @property integer $is_blocked
+ * @property string $created_at
+ * @property string $updated_at
+ */
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'users';
+    }
 
     /**
      * @inheritdoc
      */
+    public function rules()
+    {
+        return [
+            [['password', 'email', 'country_id', 'region_id'], 'required'],
+            [['country_id', 'region_id', 'emailVerified', 'is_blocked'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['name', 'surname', 'password', 'email', 'authKey', 'accessToken'], 'string', 'max' => 255],
+            [['verificationToken'], 'string', 'max' => 512],
+			[['email'], 'email'],
+			['email', 'unique'],
+			// [['name', 'surname'], 'unique', 'targetAttribute' => ['name', 'surname']],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'surname' => Yii::t('app', 'Surname'),
+            'password' => Yii::t('app', 'Password'),
+            'country_id' => Yii::t('app', 'Country'),
+            'region_id' => Yii::t('app', 'Region'),
+            'email' => Yii::t('app', 'E-mail'),
+            'emailVerified' => Yii::t('app', 'Email Verified'),
+            'verificationToken' => Yii::t('app', 'Verification Token'),
+            'is_blocked' => Yii::t('app', 'Blocked'),
+			'authKey' => Yii::t('app', 'authKey'),
+			'accessToken' => Yii::t('app', 'accessToken'),
+            'created_at' => Yii::t('app', 'Created'),
+            'updated_at' => Yii::t('app', 'Updated'),
+        ];
+    }
+	
+	public function behaviors()
+	{
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'created_at',
+				'updatedAtAttribute' => 'updated_at',
+				'value' => new Expression('NOW()'),
+			],
+		];
+	}
+	
+	/**
+	 * @inheritdoc
+	 */
+	public function beforeSave($insert)
+	{
+		if (parent::beforeSave($insert)) {
+			if ($this->isNewRecord) {
+				$this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+				$this->emailVerified = 0;
+				$this->verificationToken = Yii::$app->security->generateRandomString();
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+     * @inheritdoc
+     */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+		return static::findOne(['id' => $id, 'emailVerified' => 1, 'is_blocked' => 0]);
     }
 
     /**
@@ -41,30 +115,18 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+        return static::findOne(['accessToken' => $token, 'emailVerified' => 1, 'is_blocked' => 0]);
     }
 
     /**
-     * Finds user by username
+     * Finds user by e-mail
      *
-     * @param string $username
+     * @param string $email
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByEmail($email)
     {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
+		return static::findOne(['email' => $email, 'emailVerified' => 1, 'is_blocked' => 0]);
     }
 
     /**
@@ -74,6 +136,14 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     {
         return $this->id;
     }
+	
+	/**
+	* 
+	*/
+	public function generateAuthKey()
+	{
+		$this->authKey = Yii::$app->security->generateRandomString();
+	}
 
     /**
      * @inheritdoc
@@ -97,8 +167,54 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      * @param string $password password to validate
      * @return bool if password provided is valid for current user
      */
-    public function validatePassword($password)
+    public function validatePassword($password) // admin@mail.net
     {
-        return $this->password === $password;
+		return Yii::$app->getSecurity()->validatePassword($password, $this->password);
+    }
+	
+	/**
+	 * 
+	 */
+	public function getCountry()
+	{
+		return $this->hasOne(Countries::className(), ['id' => 'country_id']);
+	}
+	
+	/**
+	 * 
+	 */
+	public function getRegion()
+	{
+		return $this->hasOne(Regions::className(), ['id' => 'region_id']);
+	}
+	
+	/**
+	* 
+	*/
+	public function getBooks()
+    {
+        return $this->hasMany(Books::className(), ['user_id' => 'id']);
+    }
+	
+	/**
+	* 
+	*/
+    public function getEmailVerifiedStatusesList()
+    {
+        return [
+            0 => Yii::t('app', 'No'),
+            1 => Yii::t('app', 'Yes'),
+        ];
+    }
+	
+	/**
+	* 
+	*/
+    public function getBlockedStatusesList()
+    {
+        return [
+            0 => Yii::t('app', 'No'),
+            1 => Yii::t('app', 'Yes'),
+        ];
     }
 }

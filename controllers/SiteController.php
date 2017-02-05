@@ -15,7 +15,7 @@ use yii\filters\AccessControl;
 
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\models\Users;
+use app\models\User;
 
 class SiteController extends Controller
 {
@@ -183,7 +183,7 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+		return $this->render('about');
     }
 	
 	/**
@@ -194,36 +194,12 @@ class SiteController extends Controller
     public function actionDownloads()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Users::find()->orderBy('id DESC'),
+            'query' => User::find()->orderBy('id DESC'),
             'pagination' => [
                 'pageSize' => 10,
             ],
         ]);
 		
 		return $this->render('downloads', ['listDataProvider' => $dataProvider]);
-    }
-	
-	/**
-     * Profile action.
-     *
-     * @return string
-     */
-    public function actionProfile()
-    {
-		if (Yii::$app->user->isGuest) {
-            return Yii::$app->getResponse()->redirect('signup');
-        }
-		
-		if (($model = Users::findOne(Yii::$app->getUser()->id)) !== null) {
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-				Yii::$app->session->setFlash('profileFormSubmitted');
-				return $this->refresh();
-			}
-			return $this->render('profile', [
-				'model' => $model,
-			]);
-        } else {
-            throw new NotFoundHttpException('The requested profile does not exist.');
-        }
     }
 }

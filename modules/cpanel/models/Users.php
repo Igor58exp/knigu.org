@@ -84,6 +84,23 @@ class Users extends \yii\db\ActiveRecord
 	}
 	
 	/**
+	 * @inheritdoc
+	 */
+	public function beforeSave($insert)
+	{
+		if (parent::beforeSave($insert)) {
+			if ($this->isNewRecord) {
+				$this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+				$this->emailVerified = 0;
+				$this->verificationToken = Yii::$app->security->generateRandomString();
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
 	 * 
 	 */
 	public function getCountry()

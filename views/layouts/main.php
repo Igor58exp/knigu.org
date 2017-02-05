@@ -47,7 +47,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->username . ')',
+                    Yii::t('app', 'Logout') . ' (' . Yii::$app->user->identity->email . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
@@ -59,7 +59,9 @@ AppAsset::register($this);
                 [
 					'label' => Yii::t('app', 'My Account'),
 					'items' => [
-						['label' => Yii::t('app', 'Profile'), 'url' => ['/site/profile']],
+						['label' => Yii::t('app', 'Profile'), 'url' => ['/user/profile']],
+						['label' => Yii::t('app', 'Change password'), 'url' => ['/user/changepassword']],
+						// ['label' => Yii::t('app', 'Reset password'), 'url' => ['/user/resetpassword']],
 						'<li class="divider"></li>',
 						'<li class="dropdown-header"></li>',
 						['label' => Yii::t('app', 'My Books'), 'url' => ['/books/index']],
