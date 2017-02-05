@@ -6,9 +6,9 @@ use yii\helpers\Url;
 ?>
 
 <div class="item" data-key="<?= $model['link']; ?>">
-    <h2 class="title">
-    <?= Html::a(Html::encode($model['title']), Url::toRoute([Yii::$app->request->baseUrl . "/downloads/" . $model['link']])) ?>
-    </h2>
+    <h4 class="title">
+    <?= Html::a(Html::encode('"'.$model['title'].'" '.$model['author']), Url::toRoute([Yii::$app->request->baseUrl . "/downloads/" . $model['link']])) ?>
+    </h4>
 
     <div class="item-name">
     <?= Html::encode($model->name); ?>
