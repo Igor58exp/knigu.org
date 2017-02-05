@@ -43,7 +43,7 @@ class UserController extends Controller
 					// everything else is denied
 					[
 						'allow' => false,
-						'actions' => ['resetpassword'],
+						'actions' => ['emailverification', 'resetpassword'],
 					],
                 ],
             ]

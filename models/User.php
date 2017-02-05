@@ -93,7 +93,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 		if (parent::beforeSave($insert)) {
 			if ($this->isNewRecord) {
 				$this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
-				$this->emailVerified = 0;
+				$this->emailVerified = 1;
+				$this->is_blocked = 0;
 				$this->verificationToken = Yii::$app->security->generateRandomString();
 			}
 			return true;
