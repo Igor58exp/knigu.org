@@ -7,6 +7,8 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
+use yii\data\SqlDataProvider;
+
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
@@ -70,8 +72,26 @@ class RecipientsController extends Controller
      */
     public function actionSend($id)
     {
-        return $this->render('send', [
+        $dataProvider = new SqlDataProvider([
+            'sql' => '
+				SELECT t.* FROM 
+					books AS t
+				LEFT JOIN 
+					sent_books AS sb ON t.id = sb.book_id
+				WHERE
+					t.user_id = ' . Yii::$app->getUser()->getId() . '
+					AND
+					sb.id IS NULL;
+			',
+            'pagination' => [
+                'pageSize' => 999999,
+            ],
+        ]);
+		
+		
+		return $this->render('send', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
         ]);
     }
 

@@ -102,7 +102,7 @@ class Books extends \yii\db\ActiveRecord
 	 */
 	public function getUser()
 	{
-		return $this->hasOne(Users::className(), ['id' => 'user_id']);
+		return $this->hasOne(User::className(), ['id' => 'user_id']);
 	}
 	
 	/**
@@ -110,7 +110,7 @@ class Books extends \yii\db\ActiveRecord
 	*/
     public static function getUsersList()
     {
-        return ArrayHelper::map(Users::find()->all(), 'id', 'email');
+        return ArrayHelper::map(User::find()->all(), 'id', 'email');
     }
 	
 	/**

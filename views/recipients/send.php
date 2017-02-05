@@ -5,12 +5,14 @@ use yii\widgets\DetailView;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-use app\models\Users;
+use app\models\User;
 use app\models\Books;
 use app\models\SentBooks;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Recipients */
+
+// echo '<pre>' . print_r($dataProvider->getModels(), true) . '</pre>';
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Recipients'), 'url' => ['index']];
@@ -59,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 			<?php $form = ActiveForm::begin(['action' =>['books/send'], 'method' => 'post']);?>
 			<?= Html::hiddenInput('recipient_id', $model->id); ?>
-			<?= Html::ul(Users::find()->with('books')->where(['id' => Yii::$app->getUser()->id])->one()->books, ['item' => function($book, $index) {
+			<?= Html::ul($dataProvider->getModels(), ['item' => function($book, $index) {
 				return $this->render('_list', ['book' => $book]);
 			}]) ?>
 			
