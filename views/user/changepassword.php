@@ -11,7 +11,8 @@ use yii\captcha\Captcha;
 use app\models\Countries;
 use app\models\Regions;
 
-$this->title = Yii::t('app', 'Profile');
+$this->title = Yii::t('app', 'Change password');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Profile'); 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">

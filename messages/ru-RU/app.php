@@ -29,6 +29,7 @@ return [
     
     'Register' => 'Зарегистрировать',
     'Profile' => 'Профиль',
+    'Change password' => 'Смена пароля',
     'Book list' => 'Список книг',
     'Send book' => 'Отправить книгу',
     'Title' => 'Название',
