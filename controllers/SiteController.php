@@ -124,7 +124,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 		
-		$model = new Users();
+		$model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('signUpFormSubmitted');
