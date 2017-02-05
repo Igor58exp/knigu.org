@@ -15,7 +15,7 @@ $config = [
         'request' => [
 			'enableCookieValidation' => true,
 			'enableCsrfValidation' => true,
-            'cookieValidationKey' => md5('test.local'),
+            'cookieValidationKey' => md5('knigu.org'),
 			'baseUrl' => '',
         ],
         'cache' => [
