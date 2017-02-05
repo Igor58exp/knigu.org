@@ -116,7 +116,7 @@ class BooksController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			Yii::$app->mailer->compose()
                 ->setTo(Yii::$app->getUser()->getIdentity()->email)
-                ->setFrom(['noreply@knigu.org' => 'noreply for this email'])
+                ->setFrom(['noreply@knigu.org' => 'no reply for this email'])
                 ->setSubject('You added new book - sticker for your book')
                 ->setTextBody('Here\'s your sticker to book "' . $model->title . '". Code: ' . $model->hash)
                 ->send();
