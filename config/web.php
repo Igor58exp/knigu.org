@@ -40,8 +40,9 @@ $config = [
 				'host' => 'mail.knigu.org',
 				'username' => 'noreply@knigu.org',
 				'password' => 'qDNpWXOw4LotfHREvJqy',
-				'port' => '587',
-				'encryption' => 'tls',
+				'port' => '25',
+				// 'port' => '587',
+				// 'encryption' => 'tls',
             ],
         ],
         'log' => [
