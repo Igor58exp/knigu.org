@@ -12,7 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 	<p>
 		</br>
+        <?= Yii::t('app', 'downloads_main_text'); ?>
 	<p>
+        <br>
 	<?php
 		echo ListView::widget([
 			'dataProvider' => $listDataProvider,
