@@ -17,11 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'title') ?>
+    <?php // echo $form->field($model, 'title') ?>
 
-    <?= $form->field($model, 'author') ?>
+    <?php // echo $form->field($model, 'author') ?>
 
-	<?= $form->field($model, 'year')->dropDownList($model::getYearsList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select year') . ' -- ']) ?>
+	<?php // echo $form->field($model, 'year')->dropDownList($model::getYearsList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select year') . ' -- ']) ?>
 	
 	<?= $form->field($model, 'hash') ?>
 
