@@ -29,7 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
-            'name:ntext',
+            // 'name:ntext',
+			[
+				'attribute'=>'name',
+				'headerOptions' => ['style' => 'width:50%'],
+			],
             // [
 				// 'attribute'=>'country_id',
 				// 'filter'=>Countries::getList(),
@@ -44,8 +48,21 @@ $this->params['breadcrumbs'][] = $this->title;
 					// return Regions::getList()[$data->region_id];
 				// }
 			// ],
-            'address:ntext',
+            // 'address:ntext',
+			[
+				'attribute'=>'address',
+				'headerOptions' => ['style' => 'width:20%'],
+			],
             // 'is_pickup',
+			[
+				'attribute'=>'is_pickup',
+				'format' => 'raw',
+				'filter'=>$searchModel::getPickupStatusesList(),
+				'value'=>function($data){
+					return '<center>' . $data::getPickupStatusesList()[$data->is_pickup] . '</center>';
+				},
+				'headerOptions' => ['style' => 'width:5%'],
+			],
 			// [
 				// 'attribute'=>'is_pickup',
 				// 'filter'=>$searchModel::getPickupStatusesList(),
