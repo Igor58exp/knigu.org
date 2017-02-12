@@ -20,7 +20,18 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?php // echo Html::a(Yii::t('app', 'Create recipient'), ['create'], ['class' => 'btn btn-success']) ?></br>
+        <?php echo Yii::t('app', 'recipients_main_text') ?>
+		<?= Html::a(Yii::t('app', 'Fill form'), ['site/contact'], ['class' => 'alert-default',
+            'data' => [
+                'method' => 'post',
+                'params' => [
+					'ContactForm[subject]' => Yii::t('app', 'fill_form_subject'),
+					'ContactForm[body]' => Yii::t('app', 'fill_form_body'),
+				],
+            ]
+		]) ?></br>
+		<? // echo Html::a(Yii::t('app', 'Contact Us'), ['site/contact'], ['class' => 'alert-default']) ?>
+        <?php // echo Html::a(Yii::t('app', 'Create recipient'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
