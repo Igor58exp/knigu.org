@@ -10,8 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
-use app\models\Recipients;
-use app\models\RecipientsSearch;
+use app\modules\cpanel\models\Recipients;
+use app\modules\cpanel\models\RecipientsSearch;
 
 /**
  * RecipientsController implements the CRUD actions for Recipients model.

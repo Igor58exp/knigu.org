@@ -55,6 +55,19 @@ class Recipients extends \yii\db\ActiveRecord
 			],
 		];
 	}
+	
+	/**
+     * @inheritdoc
+     */
+    public function beforeSave()
+    {
+        if (parent::beforeSave($insert)) {
+			$this->address = preg_replace('/[\x00-\x1F\x7F]/u', '', $this->address);
+			return true;
+		} else {
+			return false;
+		}
+    }
 
     /**
      * @inheritdoc
@@ -67,7 +80,7 @@ class Recipients extends \yii\db\ActiveRecord
             'country_id' => Yii::t('app', 'Country'),
             'region_id' => Yii::t('app', 'Region'),
             'address' => Yii::t('app', 'Address'),
-            'is_pickup' => Yii::t('app', 'Pickup'),
+            'is_pickup' => Yii::t('app', 'Pick up'),
             'created_at' => Yii::t('app', 'Created'),
             'updated_at' => Yii::t('app', 'Updated'),
         ];

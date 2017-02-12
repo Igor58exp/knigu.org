@@ -54,6 +54,19 @@ class Recipients extends \yii\db\ActiveRecord
 			],
 		];
 	}
+	
+	/**
+     * @inheritdoc
+     */
+    public function beforeSave()
+    {
+        if (parent::beforeSave($insert)) {
+			$this->address = preg_replace('/[\x00-\x1F\x7F]/u', '', $this->address);
+			return true;
+		} else {
+			return false;
+		}
+    }
 
     /**
      * @inheritdoc
