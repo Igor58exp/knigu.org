@@ -82,6 +82,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 			'accessToken' => Yii::t('app', 'accessToken'),
             'created_at' => Yii::t('app', 'Created'),
             'updated_at' => Yii::t('app', 'Updated'),
+			'verifyCode' => Yii::t('app', 'Verification Code'),
         ];
     }
 	
