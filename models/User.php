@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string $surname
  * @property string $password
  * @property integer $country_id
+ * @property integer $region_id
  * @property string $email
  * @property integer $emailVerified
  * @property string $verificationToken
@@ -25,7 +26,13 @@ use yii\helpers\ArrayHelper;
  */
 class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    /**
+    const SCENARIO_LOGIN = 'Login';
+    const SCENARIO_SIGNUP = 'SignUp';
+	
+	public $verifyCode;
+	
+	
+	/**
      * @inheritdoc
      */
     public static function tableName()
@@ -47,6 +54,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 			[['email'], 'email'],
 			['email', 'unique'],
 			// [['name', 'surname'], 'unique', 'targetAttribute' => ['name', 'surname']],
+			
+			[['password', 'country_id', 'region_id', 'email'], 'required', 'on' => self::SCENARIO_SIGNUP],
+			[['verifyCode'], 'captcha', 'on' => self::SCENARIO_SIGNUP],
+			
+			[['email', 'password'], 'required', 'on' => self::SCENARIO_LOGIN],
         ];
     }
 
