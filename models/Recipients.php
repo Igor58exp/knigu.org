@@ -37,6 +37,7 @@ class Recipients extends \yii\db\ActiveRecord
 			[['name', 'country_id', 'region_id', 'address'], 'required'],
             [['country_id', 'region_id', 'is_pickup'], 'integer'],
             [['name', 'address', 'created_at', 'updated_at'], 'safe'],
+			[['address'], 'unique'],
         ];
     }
 	

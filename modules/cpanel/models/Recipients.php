@@ -38,6 +38,7 @@ class Recipients extends \yii\db\ActiveRecord
 			[['name', 'country_id', 'region_id', 'address'], 'required'],
             [['country_id', 'region_id', 'is_pickup'], 'integer'],
             [['name', 'address', 'created_at', 'updated_at'], 'safe'],
+			[['address'], 'unique'],
         ];
     }
 	
@@ -56,6 +57,19 @@ class Recipients extends \yii\db\ActiveRecord
 		];
 	}
 	
+	/**
+     * @inheritdoc
+     */
+    public function beforeValidate()
+    {
+        if (parent::beforeValidate($insert)) {
+			$this->address = preg_replace('/[\x00-\x1F\x7F]/u', '', $this->address);
+			return true;
+		} else {
+			return false;
+		}
+    }
+
 	/**
      * @inheritdoc
      */
