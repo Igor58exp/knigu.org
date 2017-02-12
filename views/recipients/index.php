@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="recipients-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?= $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?php echo Yii::t('app', 'recipients_main_text') ?>
