@@ -51,6 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	
 	<p>
         <?= Html::a(Yii::t('app', 'Create recipient'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Recipients'), ['index'], ['class' => 'btn btn-success']) ?>
     </p>
 
 </div>

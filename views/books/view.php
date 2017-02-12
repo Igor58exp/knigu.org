@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-		<?= Html::a(Yii::t('app', 'Resend sticker'), ['resendsticker', 'id' => $model->id], ['class' => 'btn btn-success btn-lg']) ?>
+		<?= Html::a(Yii::t('app', 'Resend sticker'), ['resendsticker', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -50,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	
 	<p>
         <?= Html::a(Yii::t('app', 'Create book'), ['create'], ['class' => 'btn btn-success']) ?>
+		<?= Html::a(Yii::t('app', 'step_two_btn'), ['recipients/index', 'id' => $id], ['class' => 'btn btn-primary']) ?>
     </p>
 
 </div>

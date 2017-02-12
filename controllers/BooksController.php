@@ -34,7 +34,7 @@ class BooksController extends Controller
 					// allow authenticated users
 					[
 						'allow' => true,
-						'actions' => ['index', 'create'],
+						'actions' => ['index', 'create', 'send'],
 						'roles' => ['@'],
 					],
 					// allow authenticated users

@@ -84,8 +84,23 @@ AppAsset::register($this);
 </div>
 
 <footer class="footer">
+	
     <div class="container">
-        <p class="pull-left"></p>
+        <p class="pull-left">
+			<?php
+				
+				echo Html::a(Yii::t('app', 'Home'), ['site/index'], ['class' => 'alert-default']);
+				echo '&nbsp;&nbsp;&nbsp;';
+				echo Html::a(Yii::t('app', 'About'), ['site/about'], ['class' => 'alert-default']);
+				echo '&nbsp;&nbsp;&nbsp;';
+				echo Html::a(Yii::t('app', 'Contact'), ['site/contact'], ['class' => 'alert-default']);
+				echo '&nbsp;&nbsp;&nbsp;';
+				echo Html::a(Yii::t('app', 'Downloads'), ['site/downloads'], ['class' => 'alert-default']);
+				echo '&nbsp;&nbsp;&nbsp;';
+				echo Html::a(Yii::t('app', 'Bookworld'), ['site/statistics'], ['class' => 'alert-default']);
+				echo '&nbsp;&nbsp;&nbsp;';
+			?>
+		</p>
     </div>
 </footer>
 
