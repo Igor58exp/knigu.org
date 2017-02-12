@@ -13,6 +13,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="books-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
+	
+	 <?php if (Yii::$app->session->hasFlash('resendStickerSuccessfully')): ?>
+
+        <div class="alert alert-success">
+			<?= Yii::t('app', 'resend_sticker_successfully')?>
+        </div>
+
+    <?php endif; ?>
 
     <p>
 		<?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -23,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+		<?= Html::a(Yii::t('app', 'Resend sticker'), ['resendsticker', 'id' => $model->id], ['class' => 'btn btn-success btn-lg']) ?>
     </p>
 
     <?= DetailView::widget([

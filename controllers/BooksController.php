@@ -29,7 +29,7 @@ class BooksController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'view', 'create', 'update', 'delete'],
+                'only' => ['index', 'view', 'create', 'update', 'delete', 'send', 'resendsticker'],
 				'rules' => [
 					// allow authenticated users
 					[
@@ -40,7 +40,7 @@ class BooksController extends Controller
 					// allow authenticated users
 					[
 						'allow' => true,
-						'actions' => ['update', 'view'],
+						'actions' => ['update', 'view', 'resendsticker'],
 						'roles' => ['@'],
 						'matchCallback' => function ($rule, $action) {
 							return $this->findModel(Yii::$app->request->get('id'))->user_id == Yii::$app->user->id;
@@ -127,6 +127,27 @@ class BooksController extends Controller
             ]);
         }
     }
+	
+	/**
+     * 
+     */
+    public function actionResendsticker($id)
+    {
+		// var_dump($id); exit();
+		
+		$model = $this->findModel($id);
+		
+		Yii::$app->mailer->compose()
+			->setTo(Yii::$app->getUser()->getIdentity()->email)
+			->setFrom(['noreply@knigu.org' => 'no reply for this email'])
+			->setSubject('Re send sticker for your book"' . $model->title . '"')
+			->setTextBody('Here\'s your sticker to book "' . $model->title . '". Code: ' . $model->hash)
+			->send();
+			
+		Yii::$app->session->setFlash('resendStickerSuccessfully');
+		
+		return $this->redirect(['view', 'id' => $model->id]);
+	}
 	
 	/**
      * 
@@ -222,7 +243,10 @@ class BooksController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Books::findOne($id)) !== null) {
+        if (($model = Books::findOne([
+			'id' => $id,
+			'user_id' => Yii::$app->user->getId(),
+		])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
