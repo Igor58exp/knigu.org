@@ -91,6 +91,26 @@ class BooksController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+	
+	/**
+     * Lists all Books models.
+     * @return mixed
+     */
+    public function actionSearch()
+    {
+        if (isset(Yii::$app->request->post('Books')['hash']) AND !empty(Yii::$app->request->post('Books')['hash'])) {
+			$model = Books::find()->where(['hash' => Yii::$app->request->post('Books')['hash']])->one();
+		} 
+		
+		if (empty($model)){
+			$model = new Books();
+			$model->load(Yii::$app->request->post());
+		}
+		
+        return $this->render('search', [
+            'model' => $model,
+        ]);
+    }
 
     /**
      * Displays a single Books model.

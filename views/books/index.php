@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'encodeLabel' => false,
 				'format' => 'raw',
 				'value' => function($data){
-					return $data->recipients ? '<div class="glyphicon glyphicon-ok"></div>' : '<div class="glyphicon glyphicon-minus-sign"></div>';
+					return $data->recipient ? '<div class="glyphicon glyphicon-ok"></div>' : '<div class="glyphicon glyphicon-minus-sign"></div>';
 				},
 				'headerOptions' => ['style' => 'width:5%'],
 			],

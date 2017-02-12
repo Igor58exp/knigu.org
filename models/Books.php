@@ -116,9 +116,9 @@ class Books extends \yii\db\ActiveRecord
 	/**
 	 * 
 	 */
-	public function getRecipients()
+	public function getRecipient()
 	{
-		return $this->hasMany(Recipients::className(), ['id' => 'recipient_id'])->viaTable('sent_books', ['book_id' => 'id']);
+		return $this->hasOne(Recipients::className(), ['id' => 'recipient_id'])->viaTable('sent_books', ['book_id' => 'id']);
 	}
 	
 	/**

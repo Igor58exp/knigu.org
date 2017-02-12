@@ -49,7 +49,7 @@ $this->title = 'My Yii Application';
 					</p>
 
 					<p>
-						<?= Html::a(Yii::t('app', 'step_three_btn'), ['books/index', 'id' => $id], ['class' => 'btn btn-default']) ?>
+						<?= Html::a(Yii::t('app', 'step_three_btn'), ['books/search', 'id' => $id], ['class' => 'btn btn-default']) ?>
 					</p>
 					
 				</div>
