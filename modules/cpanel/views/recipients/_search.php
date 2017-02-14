@@ -18,15 +18,15 @@ use app\modules\cpanel\models\Regions;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php // echo $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?php // echo $form->field($model, 'name') ?>
 
     <?= $form->field($model, 'country_id')->dropDownList(Countries::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select country') . ' -- ']) ?>
 		
 	<?= $form->field($model, 'region_id')->dropDownList(Regions::getList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select region') . ' -- ']) ?>
 
-    <?= $form->field($model, 'address') ?>
+    <?php // echo $form->field($model, 'address') ?>
 
     <?= $form->field($model, 'is_pickup')->dropDownList($model::getPickupStatusesList(), $params = ['prompt' => ' -- ' . Yii::t('app', 'Select status') . ' -- '])  ?>
 
