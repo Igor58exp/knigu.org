@@ -92,9 +92,10 @@ class Books extends \yii\db\ActiveRecord
 	/**
 	 * 
 	 */
-	public function generateCode()
+	public function generateCode() 
 	{
-		return md5('Title: ' . $this->title . ' Author: ' . $this->author . ' Year: ' . $this->year . ' User ID: ' . $this->user_id);
+		// return md5('Title: ' . $this->title . ' Author: ' . $this->author . ' Year: ' . $this->year . ' User ID: ' . $this->user_id);
+		return substr(md5(uniqid(mt_rand(), true)), 0, 16);
 	}
 	
 	/**
