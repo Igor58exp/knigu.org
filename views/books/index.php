@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'title',
 			[
 				'attribute' => 'title',
-				'headerOptions' => ['style' => 'width:50%'],
+				'headerOptions' => ['style' => 'width:30%'],
 			],
             // 'author',
 			[
@@ -41,6 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				'headerOptions' => ['style' => 'width:5%'],
 			],
             // 'hash',
+			[
+				'attribute' => 'hash',
+				'headerOptions' => ['style' => 'width:10%'],
+			],
 			// 'user_id',
 			// [
 				// 'attribute' => 'user_id',
