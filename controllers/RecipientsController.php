@@ -14,6 +14,8 @@ use yii\filters\AccessControl;
 
 use app\models\Recipients;
 use app\models\RecipientsSearch;
+use app\models\User;
+use app\models\ContactForm;
 
 /**
  * RecipientsController implements the CRUD actions for Recipients model.
@@ -58,10 +60,19 @@ class RecipientsController extends Controller
     {
         $searchModel = new RecipientsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
+		$modelContactForm = new ContactForm();
+        if ($modelContactForm->load(Yii::$app->request->post()) && $modelContactForm->contact(Yii::$app->params['contactsEmail'])) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
 
+            return $this->refresh();
+        }
+		
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'userModel' => User::findOne(Yii::$app->getUser()->getId()),
+            'modelContactForm' => $modelContactForm,
         ]);
     }
 
