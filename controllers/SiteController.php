@@ -221,7 +221,7 @@ class SiteController extends Controller
 			], [
 				'title' => 'Отец Горио',
 				'author' => 'Бальзак Оноре',
-				'link' => 'balzak .doc',
+				'link' => 'balzak.doc',
 			], [
 				'title' => 'Сборник стихов',
 				'author' => 'Блок Александр',
@@ -261,7 +261,7 @@ class SiteController extends Controller
 			], [
 				'title' => 'Стихотворения',
 				'author' => 'Киплинг Редьярд',
-				'link' => ' kipling.doc',
+				'link' => 'kipling.doc',
 			], [
 				'title' => 'Звезда Соломона',
 				'author' => 'Куприн Александр',
@@ -293,7 +293,7 @@ class SiteController extends Controller
 			], [
 				'title' => 'Том 8. Помпадуры и помпадурши. История одного города',
 				'author' => 'Салтыков-Щедрин Михаил',
-				'link' => ' soltikov.doc',
+				'link' => 'soltikov.doc',
 			], [
 				'title' => 'Путешествия Лемюэля Гулливера',
 				'author' => 'Свифт Джонатан',

@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
+$this->title = 'Подари Книгу';
 ?>
 	<div class="site-index">
 
