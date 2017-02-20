@@ -135,11 +135,11 @@ class BooksController extends Controller
 		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			Yii::$app->mailer->compose()
-                ->setTo(Yii::$app->getUser()->getIdentity()->email)
-                ->setFrom(['noreply@knigu.org' => 'no reply for this email'])
-                ->setSubject('You added new book - sticker for your book')
-                ->setTextBody('Here\'s your sticker to book "' . $model->title . '". Code: ' . $model->hash)
-                ->send();
+				->setTo(Yii::$app->getUser()->getIdentity()->email)
+				->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
+				->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
+				->setTextBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
+				->send();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -153,15 +153,13 @@ class BooksController extends Controller
      */
     public function actionResendsticker($id)
     {
-		// var_dump($id); exit();
-		
 		$model = $this->findModel($id);
 		
 		Yii::$app->mailer->compose()
 			->setTo(Yii::$app->getUser()->getIdentity()->email)
-			->setFrom(['noreply@knigu.org' => 'no reply for this email'])
-			->setSubject('Re send sticker for your book"' . $model->title . '"')
-			->setTextBody('Here\'s your sticker to book "' . $model->title . '". Code: ' . $model->hash)
+			->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
+			->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
+			->setTextBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
 			->send();
 			
 		Yii::$app->session->setFlash('resendStickerSuccessfully');
