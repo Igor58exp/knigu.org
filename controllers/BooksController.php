@@ -138,7 +138,7 @@ class BooksController extends Controller
 				->setTo(Yii::$app->getUser()->getIdentity()->email)
 				->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
 				->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
-				->setTextBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
+				->setHtmlBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
 				->send();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -159,7 +159,7 @@ class BooksController extends Controller
 			->setTo(Yii::$app->getUser()->getIdentity()->email)
 			->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
 			->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
-			->setTextBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
+			->setHtmlBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
 			->send();
 			
 		Yii::$app->session->setFlash('resendStickerSuccessfully');
