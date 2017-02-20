@@ -134,14 +134,10 @@ class BooksController extends Controller
         $model = new Books(); 
 		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			Yii::$app->mailer->compose([
-					'html' => '',
-					// 'text' => '',
-				])
+			Yii::$app->mailer->compose('')
 				->setTo(Yii::$app->getUser()->getIdentity()->email)
 				->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
 				->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
-				// ->setTextBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
 				->setHtmlBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
 				->send();
             return $this->redirect(['view', 'id' => $model->id]);
@@ -159,14 +155,10 @@ class BooksController extends Controller
     {
 		$model = $this->findModel($id);
 		
-		Yii::$app->mailer->compose([
-				'html' => '',
-				// 'text' => '',
-			])
+		Yii::$app->mailer->compose('')
 			->setTo(Yii::$app->getUser()->getIdentity()->email)
 			->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
 			->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
-			// ->setTextBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
 			->setHtmlBody(Yii::t('app', 'send_sticker_text_body "{title}" code: {hash}', ['title' => $model->title, 'hash' => $model->hash]))
 			->send();
 			
