@@ -65,7 +65,7 @@ return [
     "Sticker" => "Наклейка",
     "send_sticker_from_title" => "не отвечайте на это письмо",
     'send_sticker_subject "{title}"' => 'Наклейка для вашей книги "{title}"',
-    'send_sticker_text_body "{title}" code: {hash}' => 'Распечатайте на принтере и вклейте в книгу : "{title}" код: {hash} Ввдедите код на сайте www.knigu.org и узнайте дополнительную информацию',
+    'send_sticker_text_body "{title}" code: {hash}' => 'Распечатайте на принтере и вклейте в книгу :</br><h1> "{title}"</h1> код: {hash} </br> Ввдедите код на сайте www.knigu.org и узнайте дополнительную информацию',
     "Control panel" => "Панель управления",
     "Administrator" => "Администратор",
     "Library" => "Библиотека",
