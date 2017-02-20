@@ -134,7 +134,7 @@ class BooksController extends Controller
         $model = new Books(); 
 		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			Yii::$app->mailer->compose('')
+			Yii::$app->mailer->compose(null)
 				->setTo(Yii::$app->getUser()->getIdentity()->email)
 				->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
 				->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
@@ -155,7 +155,7 @@ class BooksController extends Controller
     {
 		$model = $this->findModel($id);
 		
-		Yii::$app->mailer->compose('')
+		Yii::$app->mailer->compose(null)
 			->setTo(Yii::$app->getUser()->getIdentity()->email)
 			->setFrom(['noreply@knigu.org' => Yii::t('app', 'send_sticker_from_title')])
 			->setSubject(Yii::t('app', 'send_sticker_subject "{title}"', ['title' => $model->title]))
